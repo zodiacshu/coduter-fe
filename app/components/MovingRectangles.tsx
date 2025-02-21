@@ -1,144 +1,6 @@
-// import React, { useEffect, useRef } from "react";
-// import gsap from "gsap";
-
-// interface MovingRectangles extends React.HTMLAttributes<HTMLDivElement> {
-//   style?: React.CSSProperties;
-// }
-
-// const MovingRectangles: React.FC<MovingRectangles> = (props) => {
-//   const { style, ...rest } = props;
-//   const containerRef = useRef<HTMLDivElement>(null);
-//   const animationRefs = useRef<gsap.core.Tween[]>([]);
-//   const listenerRefs = useRef<{ rect: Element; enter: EventListener; leave: EventListener }[]>([]);
-
-//   useEffect(() => {
-//     const rectangles = document.querySelectorAll(".rectangle");
-//     const parents = document.querySelectorAll(".parent-rect");
-//     const animations: gsap.core.Tween[] = [];
-
-//     // Initialize different speed animations
-//     parents.forEach((parent, index) => {
-//       const type = index % 2 === 0 ? "A" : "B";
-//       const anim = gsap.to(parent, {
-//         x: "110vw",
-//         duration: type === "A" ? 4 : 6,
-//         repeat: -1,
-//         ease: "circIn",
-//         delay: Math.random() * 2,
-//       });
-//       animations.push(anim);
-//     });
-
-//     // Rotation and scaling animations
-//     rectangles.forEach((rect) => {
-//       const rotationAnim = gsap.to(rect, {
-//         rotation: 360,
-//         duration: 5,
-//         repeat: -1,
-//         ease: "linear",
-//       });
-
-//       const scaleAnim = gsap.to(rect, {
-//         scale: 1,
-//         duration: 2,
-//         repeat: -1,
-//         yoyo: true,
-//         ease: "power1.inOut",
-//       });
-
-//       animations.push(rotationAnim, scaleAnim);
-//     });
-
-//     animationRefs.current = animations;
-
-//     // Cleanup
-//     return () => {
-//       animationRefs.current.forEach((anim) => anim.kill());
-//       listenerRefs.current.forEach(({ rect, enter, leave }) => {
-//         rect.removeEventListener("mouseenter", enter);
-//         rect.removeEventListener("mouseleave", leave);
-//       });
-//       listenerRefs.current = [];
-//     };
-//   }, []);
-
-//   useEffect(() => {
-//     const rectangles = document.querySelectorAll(".rectangle");
-
-//     // Hover interactions
-//     rectangles.forEach((rect, index) => {
-//       const type = index % 2 === 0 ? "A" : "B";
-
-//       const enterHandler: EventListener = () => {
-//         const moveX = type === "A" ? "+=100" : "-=100";
-//         const moveY = type === "A" ? "-=50" : "+=50";
-
-//         gsap.to(rect, {
-//           x: moveX,
-//           y: moveY,
-//           duration: 0.3,
-//           ease: "power2.out",
-//         });
-//       };
-
-//       const leaveHandler: EventListener = () => {
-//         gsap.to(rect, {
-//           x: 0,
-//           y: 0,
-//           duration: 0.5,
-//           ease: "elastic.out(1, 0.5)",
-//         });
-//       };
-
-//       rect.addEventListener("mouseenter", enterHandler);
-//       rect.addEventListener("mouseleave", leaveHandler);
-//       listenerRefs.current.push({ rect, enter: enterHandler, leave: leaveHandler });
-//     });
-
-//     // Cleanup
-//     return () => {
-//       listenerRefs.current.forEach(({ rect, enter, leave }) => {
-//         rect.removeEventListener("mouseenter", enter);
-//         rect.removeEventListener("mouseleave", leave);
-//       });
-//       listenerRefs.current = [];
-//     };
-//   }, []);
-
-//   return (
-//     <div
-//       ref={containerRef}
-//       style={style}
-//       className="relative w-screen h-screen bg-black overflow-hidden"
-//       {...rest}
-//     > 
-//       {[...Array(100)].map((_, index) => {
-//         const color = ["#00bfff", "#ff3b3b", "#32ff7e", "#ff9f1a", "#8a2be2"][index % 5];
-
-//         return (
-//           <div
-//             key={index}
-//             className="parent-rect absolute"
-//             style={{
-//               top: `${5 * index}%`,
-//               left: "-100px",
-//             }}
-//           >
-//             <div
-//               className="rectangle h-[15px] w-[100px] opacity-80"
-//               style={{ backgroundColor: color }}
-//             />
-//           </div>
-//         );
-//       })}
-//     </div>
-//   );
-// };
-
-// export default MovingRectangles;
 "use client"
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 interface MovingRectangles extends React.HTMLAttributes<HTMLDivElement> {
@@ -150,18 +12,41 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRefs = useRef<gsap.core.Tween[]>([]);
   const listenerRefs = useRef<{ rect: Element; enter: EventListener; leave: EventListener }[]>([]);
+  const [rectangles, setRectangles] = useState<Array<{
+    top: string;
+    left: string;
+    width: number;
+    color: string;
+    rotation: number;
+  }>>([]);
+ 
+  // Generate consistent rectangle properties on mount
+  useEffect(() => {
+    const colors = ["#00bfff", "#ff3b3b", "#32ff7e", "#ff9f1a", "#8a2be2"];
+    const newRectangles = Array(50).fill(null).map((_, index) => {
+      const width = 60 + (index * 0.8) % 40; // Deterministic width
+      return {
+        top: `${(index * 2) % 100}%`,
+        left: `-${width}px`,
+        width,
+        color: colors[index % 5],
+        rotation: ((index * 7) % 30) - 15, // Deterministic rotation
+      };
+    });
+    setRectangles(newRectangles);
+  }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return; // Ensure this runs only on the client
-    const rectangles = document.querySelectorAll(".rectangle");
+    if (typeof window === 'undefined' || !rectangles.length) return;
+    
     const parents = document.querySelectorAll(".parent-rect");
+    const rectElements = document.querySelectorAll(".rectangle");
     const animations: gsap.core.Tween[] = [];
 
-    // Initialize different speed animations with varying paths
+    // Initialize animations with deterministic values
     parents.forEach((parent, index) => {
-      // const type = index % 3; // Three different movement patterns
-      const duration = 3 + Math.random() * 4; // Random duration between 3-7 seconds
-      const yOffset = (Math.random() - 0.5) * 50; // Random vertical offset
+      const duration = 3 + (index * 0.08) % 4; // Deterministic duration
+      const yOffset = ((index * 13) % 100 - 50) * 0.5; // Deterministic offset
 
       const anim = gsap.to(parent, {
         x: "110vw",
@@ -169,16 +54,16 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
         duration: duration,
         repeat: -1,
         ease: "none",
-        delay: Math.random() * 2,
+        delay: (index * 0.04) % 2, // Deterministic delay
       });
       animations.push(anim);
     });
 
     // Base animations for rectangles
-    rectangles.forEach((rect) => {
+    rectElements.forEach((rect, index) => {
       const floatAnim = gsap.to(rect, {
-        y: "random(-20, 20)",
-        duration: "random(2, 4)",
+        y: (index % 2 === 0) ? 20 : -20,
+        duration: 2 + (index * 0.04) % 2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
@@ -189,7 +74,6 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
 
     animationRefs.current = animations;
 
-    // Cleanup
     return () => {
       animationRefs.current.forEach((anim) => anim.kill());
       listenerRefs.current.forEach(({ rect, enter, leave }) => {
@@ -198,25 +82,21 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
       });
       listenerRefs.current = [];
     };
-  }, []);
+  }, [rectangles]);
 
   useEffect(() => {
-    const rectangles = document.querySelectorAll(".rectangle");
+    if (!rectangles.length) return;
+    const rectElements = document.querySelectorAll(".rectangle");
 
-    // Enhanced hover interactions
-    rectangles.forEach((rect, index) => {
+    rectElements.forEach((rect, index) => {
       const type = index % 3;
 
       const enterHandler: EventListener = () => {
-        // Kill any existing hover animations
         gsap.killTweensOf(rect, "hover");
-
-        // Create dynamic hover animation
         const timeline = gsap.timeline({ id: "hover" });
         
         switch(type) {
           case 0:
-            // Upward bounce
             timeline.to(rect, {
               y: "-=40",
               rotation: "+=45",
@@ -226,7 +106,6 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
             });
             break;
           case 1:
-            // Downward bounce
             timeline.to(rect, {
               y: "+=40",
               rotation: "-=45",
@@ -236,7 +115,6 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
             });
             break;
           case 2:
-            // Wave motion
             timeline.to(rect, {
               y: "+=20",
               rotation: "+=30",
@@ -273,7 +151,6 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
       listenerRefs.current.push({ rect, enter: enterHandler, leave: leaveHandler });
     });
 
-    // Cleanup
     return () => {
       listenerRefs.current.forEach(({ rect, enter, leave }) => {
         rect.removeEventListener("mouseenter", enter);
@@ -281,7 +158,7 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
       });
       listenerRefs.current = [];
     };
-  }, []);
+  }, [rectangles]);
 
   return (
     <div
@@ -290,33 +167,27 @@ const MovingRectangles: React.FC<MovingRectangles> = (props) => {
       className="relative w-screen h-screen bg-black overflow-hidden"
       {...rest}
     > 
-      {[...Array(50)].map((_, index) => {
-        const color = ["#00bfff", "#ff3b3b", "#32ff7e", "#ff9f1a", "#8a2be2"][index % 5];
-        const width = 60 + Math.random() * 40; // Random width between 60-100px
-
-        return (
+      {rectangles.map((rect, index) => (
+        <div
+          key={index}
+          className="parent-rect absolute"
+          style={{
+            top: rect.top,
+            left: rect.left,
+          }}
+        >
           <div
-            key={index}
-            className="parent-rect absolute"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `-${width}px`,
+            className="rectangle h-[8px] opacity-80 cursor-pointer transition-opacity hover:opacity-100"
+            style={{ 
+              backgroundColor: rect.color,
+              width: `${rect.width}px`,
+              transform: `rotate(${rect.rotation}deg)`,
             }}
-          >
-            <div
-              className="rectangle h-[8px] opacity-80 cursor-pointer transition-opacity hover:opacity-100"
-              style={{ 
-                backgroundColor: color,
-                width: `${width}px`,
-                transform: `rotate(${Math.random() * 30 - 15}deg)`, // Random initial rotation
-              }}
-            />
-          </div>
-        );
-      })}
+          />
+        </div>
+      ))}
     </div>
   );
 };
-
 
 export default MovingRectangles;
