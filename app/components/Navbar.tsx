@@ -11,20 +11,7 @@ const Navbar = () => {
           </div>
           CODUTER
         </Link>
-        <div className="flex gap-4">
-            <Link
-            href="/login"
-            className="px-6 py-2 rounded-md border border-red-500 hover:bg-orange-600 transition-colors text-white hover:text-black"
-            >
-            Login
-            </Link>
-          <Link
-            href="/signup"
-            className="px-6 py-2 rounded-md bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 transition-colors"
-          >
-            Signup
-          </Link>
-        </div>
+        
       </nav>
 
     </div>
