@@ -10,6 +10,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 export default function LandingPage() {
   const [name, setName] = useState("")
@@ -98,6 +99,21 @@ export default function LandingPage() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleEnterArena = () => {
+    if (isLoggedIn) {
+      // User is logged in, proceed to challenge setup page
+      console.log("Entering arena");
+      // Redirect to the challenge setup page
+      window.location.href = '/user-challenge/setup';
+      // If using Next.js router:
+      // router.push('/user-challenge/setup');
+    } else {
+      // User is not logged in, show auth popup
+      setActiveTab("login");
+      setIsPopoverOpen(true);
+    }
+  };
+  
   const handleLogin = () => {
     // In a real app, you would authenticate with your backend here
     console.log("Logging in with:", { email, password });
@@ -106,8 +122,13 @@ export default function LandingPage() {
     // Reset auth form
     setEmail("");
     setPassword("");
+    
+    // Redirect to challenge setup page after successful login
+    window.location.href = '/user-challenge/setup';
+    // If using Next.js router:
+    // router.push('/user-challenge/setup');
   };
-
+  
   const handleSignup = () => {
     // In a real app, you would register with your backend here
     console.log("Signing up with:", { email, password, name });
@@ -116,19 +137,11 @@ export default function LandingPage() {
     // Reset auth form
     setEmail("");
     setPassword("");
-  };
-
-  // Direct handlers without using the PopoverTrigger
-  const handleEnterArena = () => {
-    if (isLoggedIn) {
-      // User is logged in, proceed to arena
-      console.log("Entering arena");
-      // Here you would redirect to the arena page
-    } else {
-      // User is not logged in, show auth popup directly
-      setActiveTab("login");
-      setIsPopoverOpen(true);
-    }
+    
+    // Redirect to challenge setup page after successful signup
+    window.location.href = '/user-challenge/setup';
+    // If using Next.js router:
+    // router.push('/user-challenge/setup');
   };
 
   const handleTeamBattle = () => {
@@ -168,7 +181,7 @@ export default function LandingPage() {
   // Separate animation for tagline words
   const wordVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: (i) => ({
+    visible: (i: any) => ({
       y: 0,
       opacity: 1,
       transition: {
@@ -194,7 +207,7 @@ export default function LandingPage() {
             }}
             animate={{
               y: ['0vh', '100vh'],
-              opacity: [0, 0.3, 0.2, 0],
+              opacity: [0, 0.6, 0.5, 0],
             }}
             transition={{
               duration: 15 + Math.random() * 20,
@@ -219,7 +232,7 @@ export default function LandingPage() {
       </div>
 
       {/* Navigation */}
-      <Navbar/>
+      {/* <Navbar/> */}
 
       {/* Hero Section */}
       <main className="relative z-1 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-6 py-10 text-center">
@@ -231,7 +244,7 @@ export default function LandingPage() {
         >
           {/* Logo */}
           <motion.div 
-            className="mb-10 relative flex justify-center"
+            className="mb-12 relative flex justify-center"
             variants={itemVariants}
           >
             <div className="w-20 h-20 md:w-24 md:h-24 relative flex items-center justify-center">
@@ -243,15 +256,16 @@ export default function LandingPage() {
           </motion.div>
           
           {/* Title with code bracket decoration */}
+          
           <motion.div
-            className="relative mb-12"
+            className="relative mb-14"
             variants={itemVariants}
           >
-            <span className="absolute -left-6 -top-6 text-5xl text-green-500/50 font-mono">{`{`}</span>
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent px-4">
-              CodeQuest: Challenge Arena
+            <span className="absolute -left-6 -top-0 text-5xl text-white-600/80 font-mono">{`{`}</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white px-4 leading-relaxed font-mono">
+              Coduter: The Social Coding Revolution
             </h1>
-            <span className="absolute -right-6 -bottom-6 text-5xl text-green-500/50 font-mono">{`}`}</span>
+            <span className="absolute -right-6 -bottom-0 text-5xl text-white-600/80 font-mono">{`}`}</span>
           </motion.div>
           
           {/* Enhanced animated tagline */}
@@ -340,7 +354,7 @@ export default function LandingPage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleEnterArena}
-            className="px-8 py-5 rounded-md bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 transition-all duration-300 text-lg font-semibold flex items-center gap-4 z-2 relative border border-green-400/20 group"
+            className="px-8 py-5 transition-all duration-300 text-lg font-semibold flex items-center gap-4 z-2 relative  group  border rounded-md border-green-400"
           >
             <div className="absolute top-0 left-0 w-full h-full bg-black/20 transform scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 rounded-md"></div>
             <Terminal className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" />
@@ -353,10 +367,13 @@ export default function LandingPage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleTeamBattle}
-            className="px-8 py-5 rounded-md border border-green-700 hover:bg-green-900/20 transition-all duration-300 text-lg font-semibold flex items-center gap-4 group"
+            className="px-8 py-5 rounded-md border transition-all duration-300 text-lg font-semibold flex items-center gap-4 group border-green-400 "
           >
+
+<div className="absolute top-0 left-0 w-full h-full bg-black/20 transform scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 rounded-md"></div>
+
             <UserPlus className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" />
-            <span className="font-mono">Team Battle Mode</span>
+            <span className="font-mono"> Invite Now</span>
           </motion.button>
         </motion.div>
 
@@ -594,8 +611,9 @@ export default function LandingPage() {
                   </div>
                   
                   <div className="text-xs text-gray-500 font-mono text-center py-1">
-                    <span className="text-green-500">></span> New players receive <span className="text-green-400">50 XP</span> bonus
+                    <span className="text-green-500"></span> New players receive <span className="text-green-400">50 XP</span> bonus
                   </div>
+                  <Footer/>
                 </div>
               </div>
             )}
@@ -687,3 +705,5 @@ export default function LandingPage() {
     </div>
   )
 }
+
+
