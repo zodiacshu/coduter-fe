@@ -495,7 +495,7 @@ export function AppSidebar() {
                   <Code className="h-4 w-4" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold text-green-400">CODUTER</span>
+                  <span className="font-semibold text-green-400"> Rank</span>
                   <span className="text-xs text-muted-foreground">Coding Platform</span>
                 </div>
               </Link>
@@ -588,7 +588,7 @@ export function AppSidebar() {
               <SidebarMenuButton asChild isActive={pathname === "/discuss"}>
                 <Link href="/discuss">
                   <MessageSquare className="h-4 w-4" />
-                  <span>Discuss</span>
+                  <span>Message</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

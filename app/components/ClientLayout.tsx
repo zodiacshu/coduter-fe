@@ -10,15 +10,15 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <SidebarProvider>
-      {isSetupPage && <AppSidebar />}  {/* Show sidebar only on setup page */}
+      {(isSetupPage || pathname === "/user-dashboard") && <AppSidebar />}  {/* Show sidebar on setup and dashboard pages */}
       
       <SidebarInset>
-        {isSetupPage && (
-          <header className="flex h-7 items-center gap-4 bg-background px-6 bg-gray-900">
-            <SidebarTrigger className=" text-white" />
-          </header>
-        )}
-        {children}
+      {(isSetupPage || pathname === "/user-dashboard") && (
+        <header className="flex h-7 items-center gap-4 bg-background px-6 bg-gray-900 justify-end top-4">
+        <SidebarTrigger className="text-white" />
+        </header>
+      )}
+      {children}
       </SidebarInset>
     </SidebarProvider>
   );
