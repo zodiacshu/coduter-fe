@@ -17,10 +17,11 @@ import {
   BarChart,
   Sidebar
 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Children } from "react";
 import { Button } from "@/components/ui/button";
 import Navbar from "../../components/Navbar";
 import { AppSidebar } from "@/app/components/AppSidebar";
+import ClientLayout from "@/app/components/ClientLayout";
 
 // Helper function to return background and border classes for an option
 interface Option {
@@ -216,6 +217,7 @@ export default function ChallengeSetupPage() {
 
       {/* Navigation */}
       {/* <Navbar /> */}
+   
       <div className="absolute top-20 right-6 z-10">
         <button 
           ref={statsButtonRef}

@@ -14,8 +14,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       
       <SidebarInset>
         {isSetupPage && (
-          <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
-            <SidebarTrigger />
+          <header className="flex h-7 items-center gap-4 bg-background px-6 bg-gray-900">
+            <SidebarTrigger className=" text-white" />
           </header>
         )}
         {children}
