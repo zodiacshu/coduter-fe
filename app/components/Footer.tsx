@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import Link from 'next/link';
-import { Code2, Mail } from 'lucide-react';
+import { Code2, Mail, Twitter, Linkedin, Github } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="mb-6 md:mb-0">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-emerald-400 flex items-center justify-center">
-                <Code2 className="w-4 h-4 text-black" />
+          <Code2 className="w-4 h-4 text-black" />
               </div>
               <span className="text-lg font-mono text-white">CODUTER</span>
             </div>
@@ -28,41 +28,41 @@ const Footer = () => {
             <div>
               <h3 className="text-white font-semibold mb-3">Quick Links</h3>
               <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-green-400 transition-colors">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about-us" className="text-gray-400 hover:text-green-400 transition-colors">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/daily-challenge" className="text-gray-400 hover:text-green-400 transition-colors">
-                    Daily Challenge
-                  </Link>
-                </li>
+          <li>
+            <Link href="/" className="text-gray-400 hover:text-green-400 transition-colors">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/about-us" className="text-gray-400 hover:text-green-400 transition-colors">
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link href="/daily-challenge" className="text-gray-400 hover:text-green-400 transition-colors">
+              Daily Challenge
+            </Link>
+          </li>
               </ul>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-3">Legal</h3>
               <ul className="space-y-2">
-                <li>
-                  <Link href="/privacy-policy" className="text-gray-400 hover:text-green-400 transition-colors">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terms-of-service" className="text-gray-400 hover:text-green-400 transition-colors">
-                    Terms of Service
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/cookie-policy" className="text-gray-400 hover:text-green-400 transition-colors">
-                    Cookie Policy
-                  </Link>
-                </li>
+          <li>
+            <Link href="/privacy-policy" className="text-gray-400 hover:text-green-400 transition-colors">
+              Privacy Policy
+            </Link>
+          </li>
+          <li>
+            <Link href="/terms-of-service" className="text-gray-400 hover:text-green-400 transition-colors">
+              Terms of Service
+            </Link>
+          </li>
+          <li>
+            <Link href="/cookie-policy" className="text-gray-400 hover:text-green-400 transition-colors">
+              Cookie Policy
+            </Link>
+          </li>
               </ul>
             </div>
           </div>
@@ -70,13 +70,41 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h3 className="text-white font-semibold mb-3">Contact Us</h3>
-            <a 
-              href="mailto:contact@coduter.com" 
-              className="flex items-center gap-2 text-gray-400 hover:text-green-400 transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              <span>contact@coduter.com</span>
-            </a>
+            <div className="space-y-2">
+              <a 
+                href="mailto:contact@coduter.com" 
+                className="flex items-center gap-2 text-gray-400 hover:text-green-400 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span>contact@coduter.com</span>
+              </a>
+              <div className="flex items-center gap-4 pt-2">
+                <a 
+                  href="https://twitter.com/coduter" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://linkedin.com/company/coduter" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-500 transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://github.com/coduter" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gray-200 transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 

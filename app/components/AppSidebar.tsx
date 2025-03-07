@@ -541,7 +541,7 @@ export function AppSidebar() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild isActive={pathname === "/dashboard"}>
-                <Link href="/dashboard">
+                <Link href="/user-dashboard">
                   <LayoutDashboard className="h-4 w-4" />
                   <span>Dashboard</span>
                 </Link>
@@ -577,12 +577,12 @@ export function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              {/* <SidebarMenuButton asChild isActive={pathname === "/learn"}>
+              <SidebarMenuButton asChild isActive={pathname === "/learn"}>
                 <Link href="/learn">
-                  <GraduationCap className="h-4 w-4" />
-                  <span>Learn</span>
+                  <Users className="h-4 w-4" />
+                  <span>Friends</span>
                 </Link>
-              </SidebarMenuButton> */}
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild isActive={pathname === "/discuss"}>
