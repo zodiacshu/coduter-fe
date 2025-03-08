@@ -1,13 +1,32 @@
 // "use client"
-
-// import * as React from "react"
 // import Link from "next/link"
+// import type React from "react"
+
 // import { usePathname } from "next/navigation"
-// import { AlignLeft, Award, BookOpen, Calendar, ChevronDown, Code, CodeSquare, Compass, Crown, FileCode2, Flame, GraduationCap, Home, LayoutDashboard, LineChart, ListChecks, MessageSquare, PanelLeft, Settings, Star, Tag, Timer, Trophy, Users } from 'lucide-react'
+// import {
+//   BookOpen,
+//   Calendar,
+//   ChevronDown,
+//   Code,
+//   CodeSquare,
+//   Compass,
+//   Crown,
+//   FileCode2,
+//   Flame,
+//   GraduationCap,
+//   LayoutDashboard,
+//   LineChart,
+//   ListChecks,
+//   MessageSquare,
+//   Settings,
+//   Tag,
+//   Timer,
+//   Trophy,
+//   Users,
+// } from "lucide-react"
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 // import { Badge } from "@/components/ui/badge"
-// import { Button } from "@/components/ui/button"
 // import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 // import { Progress } from "@/components/ui/progress"
 // import {
@@ -36,7 +55,7 @@
 //   rank: 1542,
 //   streak: 7,
 //   solved: 127,
-//   total: 1500,
+//   // total: 1500,
 //   level: "Intermediate",
 // }
 
@@ -91,10 +110,13 @@
 
 // export function AppSidebar() {
 //   const pathname = usePathname()
-  
+
 //   return (
-//     <Sidebar className="border-r border-border/50">
-//       <SidebarHeader className="border-b border-border/50">
+//     <Sidebar
+//       className="border-r border-border/50 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 "
+//       style={{ "--sidebar-background": "#0a0c14" } as React.CSSProperties}
+//     >
+//       <SidebarHeader className="border-b border-border/50 pt-4 pb-4">
 //         <SidebarMenu>
 //           <SidebarMenuItem>
 //             <SidebarMenuButton size="lg" asChild>
@@ -103,7 +125,7 @@
 //                   <Code className="h-4 w-4" />
 //                 </div>
 //                 <div className="flex flex-col gap-0.5 leading-none">
-//                   <span className="font-semibold text-green-400">CODUTER</span>
+//                   <span className="font-semibold text-green-400"> Rank</span>
 //                   <span className="text-xs text-muted-foreground">Coding Platform</span>
 //                 </div>
 //               </Link>
@@ -111,17 +133,17 @@
 //           </SidebarMenuItem>
 //         </SidebarMenu>
 //       </SidebarHeader>
-      
+
 //       <SidebarContent>
-//         {/* User Profile Summary */}
-//         <SidebarGroup>
-//           <div className="flex items-center gap-3 px-2 py-2">
-//             <Avatar className="h-10 w-10 border border-border">
+//         {/* User Profile Summary - Added mt-6 (margin-top) for more spacing */}
+//         <SidebarGroup className="mt-0">
+//           <div className="flex items-center gap-3 px-4 py-4">
+//             <Avatar className="h-12 w-12 border border-border">
 //               <AvatarImage src={userData.avatar} alt={userData.name} />
 //               <AvatarFallback>{userData.name.charAt(0)}</AvatarFallback>
 //             </Avatar>
 //             <div className="flex flex-col">
-//               <span className="font-medium">{userData.name}</span>
+//               <span className="font-medium text-lg">{userData.name}</span>
 //               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
 //                 <Trophy className="h-3 w-3 text-yellow-500" />
 //                 <span>Rank #{userData.rank}</span>
@@ -131,23 +153,25 @@
 //               </div>
 //             </div>
 //           </div>
-//           <div className="px-3 py-1">
-//             <div className="mb-1 flex items-center justify-between text-xs">
+//           <div className="px-4 py-2">
+//             <div className="mb-2 flex items-center justify-between text-sm">
 //               <span className="text-muted-foreground">Problems Solved</span>
-//               <span className="font-medium">{userData.solved}/{userData.total}</span>
+//               <span className="font-medium">
+//                 {userData.solved}
+//               </span>
 //             </div>
-//             <Progress value={(userData.solved / userData.total) * 100} className="h-1.5" />
+//             <Progress value={75} className="h-1.5" />
 //           </div>
 //         </SidebarGroup>
-        
+
 //         <SidebarSeparator />
-        
+
 //         {/* Main Navigation */}
 //         <SidebarGroup>
 //           <SidebarMenu>
 //             <SidebarMenuItem>
 //               <SidebarMenuButton asChild isActive={pathname === "/dashboard"}>
-//                 <Link href="/dashboard">
+//                 <Link href="/user-dashboard">
 //                   <LayoutDashboard className="h-4 w-4" />
 //                   <span>Dashboard</span>
 //                 </Link>
@@ -166,8 +190,10 @@
 //                 <Link href="/contests">
 //                   <Trophy className="h-4 w-4" />
 //                   <span>Contests</span>
-//                   {contests.some(c => c.isLive) && (
-//                     <Badge variant="destructive" className="ml-auto h-5 rounded-sm px-1 text-[10px]">LIVE</Badge>
+//                   {contests.some((c) => c.isLive) && (
+//                     <Badge variant="destructive" className="ml-auto h-5 rounded-sm px-1 text-[10px]">
+//                       LIVE
+//                     </Badge>
 //                   )}
 //                 </Link>
 //               </SidebarMenuButton>
@@ -183,8 +209,8 @@
 //             <SidebarMenuItem>
 //               <SidebarMenuButton asChild isActive={pathname === "/learn"}>
 //                 <Link href="/learn">
-//                   <GraduationCap className="h-4 w-4" />
-//                   <span>Learn</span>
+//                   <Users className="h-4 w-4" />
+//                   <span>Friends</span>
 //                 </Link>
 //               </SidebarMenuButton>
 //             </SidebarMenuItem>
@@ -192,15 +218,15 @@
 //               <SidebarMenuButton asChild isActive={pathname === "/discuss"}>
 //                 <Link href="/discuss">
 //                   <MessageSquare className="h-4 w-4" />
-//                   <span>Discuss</span>
+//                   <span>Message</span>
 //                 </Link>
 //               </SidebarMenuButton>
 //             </SidebarMenuItem>
 //           </SidebarMenu>
 //         </SidebarGroup>
-        
+
 //         <SidebarSeparator />
-        
+
 //         {/* Problem Categories */}
 //         <SidebarGroup>
 //           <SidebarGroupLabel>Problem Categories</SidebarGroupLabel>
@@ -210,21 +236,25 @@
 //                 <Collapsible key={category.name} className="w-full">
 //                   <SidebarMenuItem>
 //                     <CollapsibleTrigger className="flex w-full">
-//                       <SidebarMenuButton className="flex-1">
-//                         <CodeSquare className="h-4 w-4" />
-//                         <span>{category.name}</span>
-//                         <Badge variant="outline" className="ml-auto h-5 rounded-sm px-1 text-[10px]">
-//                           {category.count}
-//                         </Badge>
-//                         <ChevronDown className="ml-1 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-//                       </SidebarMenuButton>
+//                       <div>
+//                         <SidebarMenuButton className="flex-1">
+//                           <CodeSquare className="h-4 w-4" />
+//                           <span>{category.name}</span>
+//                           <Badge variant="outline" className="ml-auto h-5 rounded-sm px-1 text-[10px]">
+//                             {category.count}
+//                           </Badge>
+//                           <ChevronDown className="ml-1 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+//                         </SidebarMenuButton>
+//                       </div>                    
 //                     </CollapsibleTrigger>
 //                     <CollapsibleContent>
 //                       <SidebarMenuSub>
 //                         {category.subcategories.map((sub) => (
 //                           <SidebarMenuSubItem key={sub.name}>
 //                             <SidebarMenuSubButton asChild>
-//                               <Link href={`/problems/category/${category.name.toLowerCase()}/${sub.name.toLowerCase().replace(/\s+/g, '-')}`}>
+//                               <Link
+//                                 href={`/problems/category/${category.name.toLowerCase()}/${sub.name.toLowerCase().replace(/\s+/g, "-")}`}
+//                               >
 //                                 <span>{sub.name}</span>
 //                                 <Badge variant="outline" className="ml-auto h-4 rounded-sm px-1 text-[10px]">
 //                                   {sub.count}
@@ -257,9 +287,9 @@
 //             </SidebarMenu>
 //           </SidebarGroupContent>
 //         </SidebarGroup>
-        
+
 //         <SidebarSeparator />
-        
+
 //         {/* Learning Paths */}
 //         <SidebarGroup>
 //           <SidebarGroupLabel>Learning Paths</SidebarGroupLabel>
@@ -268,7 +298,10 @@
 //               {learningPaths.map((path) => (
 //                 <SidebarMenuItem key={path.name}>
 //                   <SidebarMenuButton asChild>
-//                     <Link href={`/learn/${path.name.toLowerCase().replace(/\s+/g, '-')}`} className="flex flex-col gap-1">
+//                     <Link
+//                       href={`/learn/${path.name.toLowerCase().replace(/\s+/g, "-")}`}
+//                       className="flex flex-col gap-1"
+//                     >
 //                       <div className="flex w-full items-center">
 //                         <BookOpen className="h-4 w-4" />
 //                         <span className="ml-2">{path.name}</span>
@@ -292,9 +325,9 @@
 //             </SidebarMenu>
 //           </SidebarGroupContent>
 //         </SidebarGroup>
-        
+
 //         <SidebarSeparator />
-        
+
 //         {/* Contests */}
 //         <SidebarGroup>
 //           <SidebarGroupLabel>Contests & Challenges</SidebarGroupLabel>
@@ -303,16 +336,17 @@
 //               {contests.map((contest) => (
 //                 <SidebarMenuItem key={contest.name}>
 //                   <SidebarMenuButton asChild>
-//                     <Link href={`/contests/${contest.name.toLowerCase().replace(/\s+/g, '-')}`} className="flex flex-col gap-0.5">
+//                     <Link
+//                       href={`/contests/${contest.name.toLowerCase().replace(/\s+/g, "-")}`}
+//                       className="flex flex-col gap-0.5"
+//                     >
 //                       <div className="flex w-full items-center">
-//                         {contest.isLive ? (
-//                           <Timer className="h-4 w-4 text-red-500" />
-//                         ) : (
-//                           <Calendar className="h-4 w-4" />
-//                         )}
+//                         {contest.isLive ? <Timer className="h-4 w-4 text-red-500" /> : <Calendar className="h-4 w-4" />}
 //                         <span className="ml-2">{contest.name}</span>
 //                         {contest.isLive && (
-//                           <Badge variant="destructive" className="ml-auto h-5 rounded-sm px-1 text-[10px]">LIVE</Badge>
+//                           <Badge variant="destructive" className="ml-auto h-5 rounded-sm px-1 text-[10px]">
+//                             LIVE
+//                           </Badge>
 //                         )}
 //                       </div>
 //                       <span className="text-xs text-muted-foreground">{contest.date}</span>
@@ -332,7 +366,7 @@
 //           </SidebarGroupContent>
 //         </SidebarGroup>
 //       </SidebarContent>
-      
+
 //       <SidebarFooter className="border-t border-border/50">
 //         <SidebarMenu>
 //           <SidebarMenuItem>
@@ -361,12 +395,11 @@
 //           </SidebarMenuItem>
 //         </SidebarMenu>
 //       </SidebarFooter>
-      
+
 //       <SidebarRail />
 //     </Sidebar>
 //   )
 // }
-
 
 "use client"
 import Link from "next/link"
@@ -374,7 +407,6 @@ import type React from "react"
 
 import { usePathname } from "next/navigation"
 import {
-  BookOpen,
   Calendar,
   ChevronDown,
   Code,
@@ -383,11 +415,11 @@ import {
   Crown,
   FileCode2,
   Flame,
-  GraduationCap,
   LayoutDashboard,
   LineChart,
   ListChecks,
   MessageSquare,
+  PlayCircle,
   Settings,
   Tag,
   Timer,
@@ -397,6 +429,7 @@ import {
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Progress } from "@/components/ui/progress"
 import {
@@ -419,7 +452,7 @@ import {
 
 // Sample user data
 const userData = {
-  name: "Alex Chen",
+  name: "Coduter Dummy",
   username: "alexc",
   avatar: "/placeholder.svg?height=32&width=32",
   rank: 1542,
@@ -464,13 +497,6 @@ const problemCategories = [
   },
 ]
 
-// Sample learning paths
-const learningPaths = [
-  { name: "Coding Interview Prep", progress: 65 },
-  { name: "Algorithms Mastery", progress: 42 },
-  { name: "System Design Fundamentals", progress: 28 },
-]
-
 // Sample contests
 const contests = [
   { name: "Weekly Challenge #42", date: "Starts in 2 days", isLive: false },
@@ -489,6 +515,7 @@ export function AppSidebar() {
       <SidebarHeader className="border-b border-border/50">
         <SidebarMenu>
           <SidebarMenuItem>
+            {/* Using asChild to avoid nesting buttons */}
             <SidebarMenuButton size="lg" asChild>
               <Link href="/dashboard">
                 <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -506,8 +533,8 @@ export function AppSidebar() {
 
       <SidebarContent>
         {/* User Profile Summary */}
-        <SidebarGroup>
-          <div className="flex items-center gap-3 px-2 py-2">
+        <SidebarGroup className="mt-6">
+          <div className="flex items-center gap-3 px-4 py-3">
             <Avatar className="h-10 w-10 border border-border">
               <AvatarImage src={userData.avatar} alt={userData.name} />
               <AvatarFallback>{userData.name.charAt(0)}</AvatarFallback>
@@ -530,7 +557,16 @@ export function AppSidebar() {
                 {userData.solved}
               </span>
             </div>
-            {/* <Progress value={(userData.solved / userData.total) * 100} className="h-1.5" /> */}
+          </div>
+          
+          {/* New Start Challenge Button */}
+          <div className="px-3 py-2">
+            <Button asChild className="w-full bg-green-600 hover:bg-green-700">
+              <Link href="/user-challenge/setup" className="flex items-center justify-center gap-2">
+                <PlayCircle className="h-4 w-4" />
+                <span>Start Challenge</span>
+              </Link>
+            </Button>
           </div>
         </SidebarGroup>
 
@@ -605,15 +641,18 @@ export function AppSidebar() {
               {problemCategories.map((category) => (
                 <Collapsible key={category.name} className="w-full">
                   <SidebarMenuItem>
-                    <CollapsibleTrigger className="flex w-full">
-                      <SidebarMenuButton className="flex-1">
-                        <CodeSquare className="h-4 w-4" />
-                        <span>{category.name}</span>
-                        <Badge variant="outline" className="ml-auto h-5 rounded-sm px-1 text-[10px]">
-                          {category.count}
-                        </Badge>
-                        <ChevronDown className="ml-1 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                      </SidebarMenuButton>
+                    {/* Fix: Use an appropriate element instead of button inside CollapsibleTrigger */}
+                    <CollapsibleTrigger asChild>
+                      <div className="flex w-full">
+                        <SidebarMenuButton className="flex-1">
+                          <CodeSquare className="h-4 w-4" />
+                          <span>{category.name}</span>
+                          <Badge variant="outline" className="ml-auto h-5 rounded-sm px-1 text-[10px]">
+                            {category.count}
+                          </Badge>
+                          <ChevronDown className="ml-1 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                        </SidebarMenuButton>
+                      </div>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
@@ -649,44 +688,6 @@ export function AppSidebar() {
                   <Link href="/problems/tags">
                     <Tag className="h-4 w-4" />
                     <span>Problem Tags</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarSeparator />
-
-        {/* Learning Paths */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Learning Paths</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {learningPaths.map((path) => (
-                <SidebarMenuItem key={path.name}>
-                  <SidebarMenuButton asChild>
-                    <Link
-                      href={`/learn/${path.name.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="flex flex-col gap-1"
-                    >
-                      <div className="flex w-full items-center">
-                        <BookOpen className="h-4 w-4" />
-                        <span className="ml-2">{path.name}</span>
-                      </div>
-                      <div className="flex w-full items-center gap-2">
-                        <Progress value={path.progress} className="h-1.5" />
-                        <span className="text-xs text-muted-foreground">{path.progress}%</span>
-                      </div>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/learn/explore">
-                    <Compass className="h-4 w-4" />
-                    <span>Explore All Paths</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -747,7 +748,7 @@ export function AppSidebar() {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link href="/stats">
+              <Link href="/user-stats">
                 <LineChart className="h-4 w-4" />
                 <span>My Stats</span>
               </Link>
@@ -768,4 +769,3 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
-
