@@ -3,22 +3,28 @@
 import { usePathname } from "next/navigation";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
+import SidebarToggleScript from "./SidebarToggleScript";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname(); // Get the current route
-  const isSetupPage = pathname === "/user-challenge/setup"; // Check if it's the setup page
+  const showSidebar = pathname === "/user-challenge/setup" || pathname === "/user-dashboard";
 
   return (
     <SidebarProvider>
-      {(isSetupPage || pathname === "/user-dashboard") && <AppSidebar />}  {/* Show sidebar on setup and dashboard pages */}
+      {showSidebar && <AppSidebar />}  {/* Show sidebar on specific pages */}
       
       <SidebarInset>
-      {(isSetupPage || pathname === "/user-dashboard") && (
-        <header className="flex h-7 items-center gap-4 bg-background px-6 bg-gray-900 justify-end top-4">
-        <SidebarTrigger className="text-white" />
-        </header>
-      )}
-      {children}
+        {showSidebar && (
+          <>
+            {/* Hidden but accessible to scripts */}
+            <div className="sr-only">
+              <SidebarTrigger id="sidebar-trigger" className="text-white" />
+            </div>
+            {/* Add the toggle script */}
+            <SidebarToggleScript />
+          </>
+        )}
+        {children}
       </SidebarInset>
     </SidebarProvider>
   );
