@@ -39,7 +39,7 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link href="/daily-challenge" className="text-gray-400 hover:text-green-400 transition-colors">
+            <Link href="/user-challenge/setup" className="text-gray-400 hover:text-green-400 transition-colors">
               Daily Challenge
             </Link>
           </li>

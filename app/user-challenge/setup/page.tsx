@@ -219,33 +219,6 @@ export default function ChallengeSetupPage() {
    
       
       <div className="absolute top-20 right-6 z-10">
-  <button 
-    ref={statsButtonRef}
-    onClick={toggleStatsMenu}
-    className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg border transition-all duration-300 ${
-      showStatsMenu 
-        ? 'bg-red-500/20 border-red-500' 
-        : 'bg-gradient-to-r from-yellow-900/30 to-amber-700/30 border-yellow-600/50 hover:from-yellow-800/40 hover:to-amber-600/40'
-    }`}
-    aria-label="Leaderboard"
-  >
-    <motion.div 
-      initial={{ rotate: 0 }}
-      animate={{ rotate: showStatsMenu ? 180 : 0 }}
-      transition={{ duration: 0.3 }}
-      className="relative"
-    >
-      <Trophy className="w-5 h-5 text-yellow-500" />
-      <span className="absolute -top-1 -right-1 flex h-3 w-3">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
-      </span>
-    </motion.div>
-    <div className="flex flex-col leading-none">
-      <span className="text-xs font-semibold text-yellow-400">Rank #234</span>
-      <span className="text-[10px] text-gray-400">Top 5%</span>
-    </div>
-  </button>
   
   {showStatsMenu && (
     <motion.div 
@@ -277,13 +250,39 @@ export default function ChallengeSetupPage() {
       <main className="relative z-1 flex flex-col items-center justify-center pt-10 px-4 md:px-6 pb-20 min-h-[calc(100vh-80px)]">
         <motion.div variants={containerVariants} initial="hidden" animate={isLoaded ? "visible" : "hidden"} className="w-full max-w-6xl">
           {/* Back Button */}
-          <motion.div variants={itemVariants} className="mb-0">
+            <motion.div variants={itemVariants} className="mb-0 flex justify-between items-center">
             <Link href="/" className="flex items-center gap-2 px-4 py-2 bg-gray-900/60 rounded-md border border-green-700 hover:bg-green-900/20 transition-all duration-300 font-mono text-sm w-fit">
               <ArrowLeft className="w-4 h-4 text-green-400" />
-
               <span>Return Home</span>
             </Link>
-          </motion.div>
+            <button 
+              ref={statsButtonRef}
+              onClick={toggleStatsMenu}
+              className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg border transition-all duration-300 ${
+              showStatsMenu 
+                ? 'bg-red-500/20 border-red-500' 
+                : 'bg-gradient-to-r from-yellow-900/30 to-amber-700/30 border-yellow-600/50 hover:from-yellow-800/40 hover:to-amber-600/40'
+              }`}
+              aria-label="Leaderboard"
+            >
+              <motion.div 
+              initial={{ rotate: 0 }}
+              animate={{ rotate: showStatsMenu ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+              >
+              <Trophy className="w-5 h-5 text-yellow-500" />
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+              </span>
+              </motion.div>
+              <div className="flex flex-col leading-none ">
+              <span className="text-xs font-semibold text-yellow-400">Rank #234</span>
+              <span className="text-[10px] text-gray-400">Top 5%</span>
+              </div>
+            </button>
+            </motion.div>
               {/* <AppSidebar /> */}
 
           {/* Header */}
