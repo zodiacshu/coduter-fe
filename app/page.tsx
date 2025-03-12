@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import { loginUser,signupUser } from "@/lib/api" 
 
 export default function LandingPage() {
   const [name, setName] = useState("")
@@ -114,34 +115,63 @@ export default function LandingPage() {
     }
   };
   
-  const handleLogin = () => {
-    // In a real app, you would authenticate with your backend here
-    console.log("Logging in with:", { email, password });
-    setIsLoggedIn(true);
-    setIsPopoverOpen(false);
-    // Reset auth form
-    setEmail("");
-    setPassword("");
+  // const handleLogin = () => {
+  //   // In a real app, you would authenticate with your backend here
+  //   console.log("Logging in with:", { email, password });
+  //   setIsLoggedIn(true);
+  //   setIsPopoverOpen(false);
+  //   // Reset auth form
+  //   setEmail("");
+  //   setPassword("");
     
-    // Redirect to challenge setup page after successful login
-    window.location.href = '/user-challenge/setup';
-    // If using Next.js router:
-    // router.push('/user-challenge/setup');
+  //   // Redirect to challenge setup page after successful login
+  //   window.location.href = '/user-challenge/setup';
+  //   // If using Next.js router:
+  //   // router.push('/user-challenge/setup');
+  // };
+  const handleLogin = async () => {
+    try {
+      await loginUser(email, password);
+      setIsLoggedIn(true);
+      setIsPopoverOpen(false);
+      window.location.href = '/user-challenge/setup';
+    } catch (error) {
+      console.error('Login error:', error);
+      // Show error to user
+    }
   };
+
+
+
+
   
-  const handleSignup = () => {
-    // In a real app, you would register with your backend here
-    console.log("Signing up with:", { email, password, name });
-    setIsLoggedIn(true);
-    setIsPopoverOpen(false);
-    // Reset auth form
-    setEmail("");
-    setPassword("");
+  // const handleSignup = () => {
+  //   // In a real app, you would register with your backend here
+  //   console.log("Signing up with:", { email, password, name });
+  //   setIsLoggedIn(true);
+  //   setIsPopoverOpen(false);
+  //   // Reset auth form
+  //   setEmail("");
+  //   setPassword("");
     
-    // Redirect to challenge setup page after successful signup
-    window.location.href = '/user-challenge/setup';
-    // If using Next.js router:
-    // router.push('/user-challenge/setup');
+  //   // Redirect to challenge setup page after successful signup
+  //   window.location.href = '/user-challenge/setup';
+  //   // If using Next.js router:
+  //   // router.push('/user-challenge/setup');
+  // };
+
+
+
+  const handleSignup = async () => {
+    try {
+      await signupUser(name, email, password);
+      setIsLoggedIn(true);
+      setIsPopoverOpen(false);
+      window.location.href = '/user-challenge/setup';
+    } catch (error) {
+      console.error('Signup error:', error);
+      // Show error to user
+    }
   };
 
   const handleTeamBattle = () => {
@@ -461,9 +491,11 @@ export default function LandingPage() {
                   </div>
                   
                   <Button
+                
                     onClick={handleLogin}
                     className="w-full bg-green-600 hover:bg-green-500 font-medium py-6 transition-all duration-200 font-mono text-white relative overflow-hidden group"
                   >
+                      <Link href="/user-challenge/setup">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-full h-1/3 bg-black/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                     </div>
@@ -471,6 +503,7 @@ export default function LandingPage() {
                       <Terminal className="w-5 h-5" />
                       <span className="tracking-wider">Authenticate</span>
                     </div>
+                    </Link>
                   </Button>
                   
                   {/* Social login divider */}
@@ -513,10 +546,7 @@ export default function LandingPage() {
             {activeTab === "signup" && (
               <div className="space-y-5 font-mono">
                 <div className="space-y-2">
-                  <h4 className="font-mono text-lg leading-none text-green-400 flex items-center gap-2">
-                    <UserPlus className="w-4 h-4" /> 
-                    <span className="typing-animation">New "Coder" Registration</span>
-                  </h4>
+                  
                   <p className="text-sm text-gray-400 font-mono mb-2">
                     <span className="text-green-500"></span> Create an account to join the battles
                   </p>
@@ -610,10 +640,7 @@ export default function LandingPage() {
                     </button>
                   </div>
                   
-                  <div className="text-xs text-gray-500 font-mono text-center py-1">
-                    <span className="text-green-500"></span> New players receive <span className="text-green-400">50 XP</span> bonus
-                  </div>
-                  <Footer/>
+  
                 </div>
               </div>
             )}
