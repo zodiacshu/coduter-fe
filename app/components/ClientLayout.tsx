@@ -7,7 +7,7 @@ import SidebarToggleScript from "./SidebarToggleScript";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname(); // Get the current route
-  const showSidebar = pathname === "/user-challenge/setup" || pathname === "/user-dashboard" || pathname === "/profile"|| pathname === "/user-stats" ;
+  const showSidebar = pathname === "/user-challenge/setup" || pathname === "/user-dashboard" || pathname === "/profile"|| pathname === "/user-stats" || pathname==='/settings' ;
 
   return (
     <SidebarProvider>
