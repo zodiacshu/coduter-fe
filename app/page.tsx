@@ -1,21 +1,24 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Code2, UserPlus, Gamepad2, Zap, Trophy, Terminal, MonitorPlay, LogIn } from "lucide-react"
+import { UserPlus, Terminal, LogIn } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
-import { loginUser,signupUser } from "@/lib/api" 
+import { useRouter } from "next/navigation"
+
+// import { loginUser,signupUser } from "@/lib/api" 
+import { signIn, useSession , signOut } from "next-auth/react"
+
+// Removed inline type extension; moved to a dedicated types file
+
+
 
 export default function LandingPage() {
+  const router = useRouter()
   const [name, setName] = useState("")
-  const [codingType, setCodingType] = useState("")
+  // Removed unused state
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [codeLines, setCodeLines] = useState<string[]>([]);
@@ -23,7 +26,34 @@ export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [activeTab, setActiveTab] = useState("login"); // For tracking active tab
+  const [activeTab, setActiveTab] = useState("login");
+
+
+
+  const { data: session } = useSession();
+  
+ const fetchProtectedData = async () => {
+      if (session?.accessToken) {
+        console.log("session.accessToken", session.accessToken)
+        const response = await fetch("http://coduter-be-dev.us-west-2.elasticbeanstalk.com/auth", {
+          headers: {
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+        });
+        const data = await response.json();
+        console.log(data);
+        // Handle the response
+      }
+    };
+
+
+    useEffect(() => {
+      if (session) {
+        fetchProtectedData();
+        console.log("Session detected, redirecting to user-challenge");
+        router.push('/user-challenge/setup');
+      }
+    }, [session, router]);
 
   // Code snippets that will animate in the background
   const codeSamples = [
@@ -129,17 +159,17 @@ export default function LandingPage() {
   //   // If using Next.js router:
   //   // router.push('/user-challenge/setup');
   // };
-  const handleLogin = async () => {
-    try {
-      await loginUser(email, password);
-      setIsLoggedIn(true);
-      setIsPopoverOpen(false);
-      window.location.href = '/user-challenge/setup';
-    } catch (error) {
-      console.error('Login error:', error);
-      // Show error to user
-    }
-  };
+  // const handleLogin = async () => {
+  //   try {
+  //     await loginUser(email, password);
+  //     setIsLoggedIn(true);
+  //     setIsPopoverOpen(false);
+  //     window.location.href = '/user-challenge/setup';
+  //   } catch (error) {
+  //     console.error('Login error:', error);
+  //     // Show error to user
+  //   }
+  // };
 
 
 
@@ -162,17 +192,17 @@ export default function LandingPage() {
 
 
 
-  const handleSignup = async () => {
-    try {
-      await signupUser(name, email, password);
-      setIsLoggedIn(true);
-      setIsPopoverOpen(false);
-      window.location.href = '/user-challenge/setup';
-    } catch (error) {
-      console.error('Signup error:', error);
-      // Show error to user
-    }
-  };
+  // const handleSignup = async () => {
+  //   try {
+  //     await signupUser(name, email, password);
+  //     setIsLoggedIn(true);
+  //     setIsPopoverOpen(false);
+  //     window.location.href = '/user-challenge/setup';
+  //   } catch (error) {
+  //     console.error('Signup error:', error);
+  //     // Show error to user
+  //   }
+  // };
 
   const handleTeamBattle = () => {
     if (isLoggedIn) {
@@ -221,6 +251,9 @@ export default function LandingPage() {
       }
     })
   };
+
+
+
 
   return (
     <div className="min-h-screen bg-gray-950 text-white overflow-hidden relative">
@@ -403,7 +436,7 @@ export default function LandingPage() {
 <div className="absolute top-0 left-0 w-full h-full bg-black/20 transform scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 rounded-md"></div>
 
             <UserPlus className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" />
-            <span className="font-mono"> Invite Now</span>
+            <span className="font-mono"> Invite Now </span>
           </motion.button>
         </motion.div>
 
@@ -492,7 +525,7 @@ export default function LandingPage() {
                   
                   <Button
                 
-                    onClick={handleLogin}
+                    // onClick={handleLogin}
                     className="w-full bg-green-600 hover:bg-green-500 font-medium py-6 transition-all duration-200 font-mono text-white relative overflow-hidden group"
                   >
                       <Link href="/user-challenge/setup">
@@ -595,7 +628,7 @@ export default function LandingPage() {
                   </div>
                   
                   <Button
-                    onClick={handleSignup}
+                    // onClick={handleSignup}
                     className="w-full bg-green-600 hover:bg-green-500 font-medium py-6 transition-all duration-200 font-mono text-white relative overflow-hidden group"
                   >
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -617,7 +650,7 @@ export default function LandingPage() {
                   {/* Social signup buttons */}
                   <div className="grid grid-cols-2 gap-3">
                     <button 
-                      onClick={() => console.log("Google signup")} 
+                      onClick={ ()=>signIn('google') } 
                       className="flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 py-3 rounded-md border border-gray-700 transition-colors duration-200"
                     >
                       <svg className="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

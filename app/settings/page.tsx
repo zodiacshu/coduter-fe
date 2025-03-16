@@ -23,6 +23,7 @@ import {
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Navbar from '@/app/components/Navbar'
+import { signOut } from 'next-auth/react'
 
 const Settings: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -206,6 +207,7 @@ const Settings: React.FC = () => {
                 
                 <div className="pt-6 mt-6 border-t border-gray-700">
                   <button
+                  onClick={() => signOut()}
                     className="flex items-center w-full px-4 py-3 rounded-md text-red-400 hover:bg-red-900/30 transition-colors"
                   >
                     <LogOut className="w-5 h-5 mr-3" />

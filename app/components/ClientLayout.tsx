@@ -1,15 +1,22 @@
-"use client"; // Mark it as a client component
+"use client";
 
 import { usePathname } from "next/navigation";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import SidebarToggleScript from "./SidebarToggleScript";
+import { SessionProvider } from "next-auth/react";
 
-export default function ClientLayout({ children }: { children: React.ReactNode }) {
+export default function ClientLayout({ children, session }: {
+   children: React.ReactNode, 
+   session?:any
+  })
+   {
   const pathname = usePathname(); // Get the current route
   const showSidebar = pathname === "/user-challenge/setup" || pathname === "/user-dashboard" || pathname === "/profile"|| pathname === "/user-stats" || pathname==='/settings' ;
 
   return (
+    <SessionProvider session={session}>
+
     <SidebarProvider>
       {showSidebar && <AppSidebar />}  {/* Show sidebar on specific pages */}
       
@@ -27,5 +34,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         {children}
       </SidebarInset>
     </SidebarProvider>
+    </SessionProvider>
   );
 }
