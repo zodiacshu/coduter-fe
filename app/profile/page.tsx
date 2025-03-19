@@ -128,7 +128,7 @@ export default function UserProfile() {
           >
             <Link href="/user-dashboard">
               <ChevronLeft className="mr-2 h-4 w-4" />
-              Back to Dashboard
+              Dashboard
             </Link>
           </Button>
           

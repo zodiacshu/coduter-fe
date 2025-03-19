@@ -118,7 +118,7 @@ const Settings: React.FC = () => {
           <motion.div variants={itemVariants} className="mb-6 flex justify-between items-center">
             <Link href="/user-dashboard" className="flex items-center gap-2 px-4 py-2 bg-gray-900/60 rounded-md border border-green-700 hover:bg-green-900/20 transition-all duration-300 font-mono text-sm w-fit">
               <ArrowLeft className="w-4 h-4 text-green-400" />
-              <span>Back to Dashboard</span>
+              <span>Dashboard</span>
             </Link>
             
             <button 
@@ -135,11 +135,11 @@ const Settings: React.FC = () => {
             <motion.div variants={itemVariants} className="w-full md:w-64 bg-gray-900/80 border border-green-500/20 rounded-xl overflow-hidden shadow-xl">
               <div className="p-4">
                 <div className="terminal-header rounded-t-lg bg-gray-800 -mx-4 -mt-4 px-4 pt-2 pb-2 mb-4 border-b border-gray-700">
-                  <div className="terminal-controls">
+                  {/* <div className="terminal-controls">
                     <span className="terminal-circle bg-red-500"></span>
                     <span className="terminal-circle bg-yellow-500"></span>
                     <span className="terminal-circle bg-green-500"></span>
-                  </div>
+                  </div> */}
                   <div className="terminal-title font-mono text-xs text-gray-300">settings.config</div>
                 </div>
                 
@@ -229,9 +229,9 @@ const Settings: React.FC = () => {
                 >
                   <div className="terminal-header rounded-t-lg bg-gray-800 -mx-6 -mt-6 px-6 pt-2 pb-2 mb-6 border-b border-gray-700">
                     <div className="terminal-controls">
-                      <span className="terminal-circle bg-red-500"></span>
+                      {/* <span className="terminal-circle bg-red-500"></span>
                       <span className="terminal-circle bg-yellow-500"></span>
-                      <span className="terminal-circle bg-green-500"></span>
+                      <span className="terminal-circle bg-green-500"></span> */}
                     </div>
                     <div className="terminal-title font-mono text-xs text-gray-300">user_account.config</div>
                   </div>

@@ -144,65 +144,6 @@ export default function LandingPage() {
       setIsPopoverOpen(true);
     }
   };
-  
-  // const handleLogin = () => {
-  //   // In a real app, you would authenticate with your backend here
-  //   console.log("Logging in with:", { email, password });
-  //   setIsLoggedIn(true);
-  //   setIsPopoverOpen(false);
-  //   // Reset auth form
-  //   setEmail("");
-  //   setPassword("");
-    
-  //   // Redirect to challenge setup page after successful login
-  //   window.location.href = '/user-challenge/setup';
-  //   // If using Next.js router:
-  //   // router.push('/user-challenge/setup');
-  // };
-  // const handleLogin = async () => {
-  //   try {
-  //     await loginUser(email, password);
-  //     setIsLoggedIn(true);
-  //     setIsPopoverOpen(false);
-  //     window.location.href = '/user-challenge/setup';
-  //   } catch (error) {
-  //     console.error('Login error:', error);
-  //     // Show error to user
-  //   }
-  // };
-
-
-
-
-  
-  // const handleSignup = () => {
-  //   // In a real app, you would register with your backend here
-  //   console.log("Signing up with:", { email, password, name });
-  //   setIsLoggedIn(true);
-  //   setIsPopoverOpen(false);
-  //   // Reset auth form
-  //   setEmail("");
-  //   setPassword("");
-    
-  //   // Redirect to challenge setup page after successful signup
-  //   window.location.href = '/user-challenge/setup';
-  //   // If using Next.js router:
-  //   // router.push('/user-challenge/setup');
-  // };
-
-
-
-  // const handleSignup = async () => {
-  //   try {
-  //     await signupUser(name, email, password);
-  //     setIsLoggedIn(true);
-  //     setIsPopoverOpen(false);
-  //     window.location.href = '/user-challenge/setup';
-  //   } catch (error) {
-  //     console.error('Signup error:', error);
-  //     // Show error to user
-  //   }
-  // };
 
   const handleTeamBattle = () => {
     if (isLoggedIn) {
@@ -252,9 +193,6 @@ export default function LandingPage() {
     })
   };
 
-
-
-
   return (
     <div className="min-h-screen bg-gray-950 text-white overflow-hidden relative">
       {/* Matrix-like code rain background */}
@@ -262,7 +200,7 @@ export default function LandingPage() {
         {codeLines.map((line, i) => (
           <motion.div
             key={i}
-            className="absolute text-sm text-green-500/30 font-mono whitespace-nowrap"
+            className="absolute text-sm text-blue-500/30 font-mono whitespace-nowrap"
             initial={{
               x: `${Math.random() * 100}vw`,
               y: -100,
@@ -285,13 +223,13 @@ export default function LandingPage() {
       </div>
       
       {/* Terminal grid overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwaC00MHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxNTMsIDI1NSwgMTUzLCAwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] opacity-30 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwaC00MHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxNTMsIDE1MywgMjU1LCAwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] opacity-30 pointer-events-none"></div>
       
       {/* Glowing horizontal lines */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/20 to-transparent"></div>
-        <div className="absolute top-2/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/10 to-transparent"></div>
-        <div className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/20 to-transparent"></div>
+        <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+        <div className="absolute top-2/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/10 to-transparent"></div>
+        <div className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
       </div>
 
       {/* Navigation */}
@@ -311,9 +249,9 @@ export default function LandingPage() {
             variants={itemVariants}
           >
             <div className="w-20 h-20 md:w-24 md:h-24 relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-green-500/10 rounded-md rotate-45 border border-green-500/30"></div>
+              <div className="absolute inset-0 bg-purple-500/10 rounded-md rotate-45 border border-blue-500/30"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <Terminal className="w-10 h-10 md:w-12 md:h-12 text-green-400" />
+                <Terminal className="w-10 h-10 md:w-12 md:h-12 text-blue-400" />
               </div>
             </div>
           </motion.div>
@@ -324,11 +262,11 @@ export default function LandingPage() {
             className="relative mb-14"
             variants={itemVariants}
           >
-            <span className="absolute -left-6 -top-0 text-5xl text-white-600/80 font-mono">{`{`}</span>
+            <span className="absolute -left-6 -top-0 text-5xl text-purple-600/80 font-mono">{`{`}</span>
             <h1 className="text-4xl md:text-6xl font-bold text-white px-4 leading-relaxed font-mono">
               Coduter: The Social Coding Revolution
             </h1>
-            <span className="absolute -right-6 -bottom-0 text-5xl text-white-600/80 font-mono">{`}`}</span>
+            <span className="absolute -right-6 -bottom-0 text-5xl text-blue-600/80 font-mono">{`}`}</span>
           </motion.div>
           
           {/* Enhanced animated tagline */}
@@ -341,20 +279,20 @@ export default function LandingPage() {
                 <div className="terminal-controls">
                   <span className="terminal-circle bg-red-500"></span>
                   <span className="terminal-circle bg-yellow-500"></span>
-                  <span className="terminal-circle bg-green-500"></span>
+                  <span className="terminal-circle bg-blue-500"></span>
                 </div>
                 <div className="terminal-title font-mono text-xs text-gray-400">mission_statement.sh</div>
               </div>
-              <div className="terminal-content p-6 bg-gray-900/50 border border-green-500/20">
+              <div className="terminal-content p-6 bg-gray-900/50 border border-blue-500/20">
                 <div className="flex items-start mb-2">
-                  <span className="text-green-500 mr-3 font-mono">$</span>
+                  <span className="text-blue-500 mr-3 font-mono">$</span>
                   <div className="text-left font-mono cursor relative">
                     {taglineVisible && (
                       <div className="flex flex-wrap justify-start max-w-2xl">
                         {taglineWords.map((word, i) => (
                           <motion.span
                             key={i}
-                            className="text-green-400 mr-3 mb-1.5"
+                            className="text-blue-400 mr-3 mb-1.5"
                             custom={i}
                             initial="hidden"
                             animate="visible"
@@ -379,7 +317,7 @@ export default function LandingPage() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 3.5 }}
                 >
-                  <span className="text-green-500">[success]</span> Mission statement loaded successfully.
+                  <span className="text-purple-500">[success]</span> Mission statement loaded successfully.
                 </motion.div>
               </div>
             </div>
@@ -391,16 +329,16 @@ export default function LandingPage() {
             variants={itemVariants}
           >
             <div className="text-center px-6">
-              <div className="text-4xl font-mono text-green-400 mb-3">1,200+</div>
-              <div className="text-sm text-green-300/80 tracking-wide">Challenges</div>
+              <div className="text-4xl font-mono text-blue-400 mb-3">1,200+</div>
+              <div className="text-sm text-blue-300/80 tracking-wide">Challenges</div>
             </div>
             <div className="text-center px-6">
-              <div className="text-4xl font-mono text-green-400 mb-3">48,000+</div>
-              <div className="text-sm text-green-300/80 tracking-wide">Players</div>
+              <div className="text-4xl font-mono text-purple-400 mb-3">48,000+</div>
+              <div className="text-sm text-purple-300/80 tracking-wide">Players</div>
             </div>
             <div className="text-center px-6">
-              <div className="text-4xl font-mono text-green-400 mb-3">5</div>
-              <div className="text-sm text-green-300/80 tracking-wide">Difficulty Levels</div>
+              <div className="text-4xl font-mono text-blue-400 mb-3">5</div>
+              <div className="text-sm text-blue-300/80 tracking-wide">Difficulty Levels</div>
             </div>
           </motion.div>
         </motion.div>
@@ -417,11 +355,11 @@ export default function LandingPage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleEnterArena}
-            className="px-8 py-5 transition-all duration-300 text-lg font-semibold flex items-center gap-4 z-2 relative  group  border rounded-md border-green-400"
+            className="px-8 py-5 transition-all duration-300 text-lg font-semibold flex items-center gap-4 z-2 relative group border rounded-md border-blue-400 bg-gradient-to-r from-blue-600/30 to-purple-600/30 hover:from-blue-600/40 hover:to-purple-600/40"
           >
             <div className="absolute top-0 left-0 w-full h-full bg-black/20 transform scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 rounded-md"></div>
-            <Terminal className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" />
-            <span className="relative">Enter the Arena</span>
+            <Terminal className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12 text-blue-300" />
+            <span className="relative text-blue-100">Enter the Arena</span>
           </motion.button>
 
           {/* Team Battle Button */}
@@ -430,13 +368,11 @@ export default function LandingPage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleTeamBattle}
-            className="px-8 py-5 rounded-md border transition-all duration-300 text-lg font-semibold flex items-center gap-4 group border-green-400 "
+            className="px-8 py-5 rounded-md border transition-all duration-300 text-lg font-semibold flex items-center gap-4 group border-purple-400 bg-gradient-to-r from-purple-600/30 to-blue-600/30 hover:from-purple-600/40 hover:to-blue-600/40"
           >
-
-<div className="absolute top-0 left-0 w-full h-full bg-black/20 transform scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 rounded-md"></div>
-
-            <UserPlus className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" />
-            <span className="font-mono"> Invite Now </span>
+            <div className="absolute top-0 left-0 w-full h-full bg-black/20 transform scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 rounded-md"></div>
+            <UserPlus className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12 text-purple-300" />
+            <span className="font-mono text-purple-100">Invite Now</span>
           </motion.button>
         </motion.div>
 
@@ -444,7 +380,7 @@ export default function LandingPage() {
 {isPopoverOpen && (
   <div className="fixed inset-0 bg-gray-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
     <div className="w-full max-w-md">
-      <div className="w-96 bg-gray-900/95 backdrop-filter backdrop-blur-xl border border-green-500/30 text-white rounded-md overflow-hidden relative">
+      <div className="w-96 bg-gray-900/95 backdrop-filter backdrop-blur-xl border border-blue-500/30 text-white rounded-md overflow-hidden relative">
         {/* Close button */}
         <button 
           onClick={() => setIsPopoverOpen(false)}
@@ -461,7 +397,7 @@ export default function LandingPage() {
               <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div> */}
-            <div className="text-xs text-gray-400 mx-auto font-mono">TALK IS CHEAP, <span className="text-green-400">AUTHENTICATE FIRST</span></div>
+            <div className="text-xs text-gray-400 mx-auto font-mono">TALK IS CHEAP, <span className="text-blue-400">AUTHENTICATE FIRST</span></div>
           </div>
           
           <div className="pt-8">
@@ -469,15 +405,15 @@ export default function LandingPage() {
             <div className="grid grid-cols-2 bg-gray-800 mb-4 rounded-md overflow-hidden">
               <button 
                 onClick={() => setActiveTab("login")}
-                className={`font-mono text-sm py-2 px-4 ${activeTab === "login" ? "bg-green-800/50 text-green-400" : "bg-transparent text-gray-400"}`}
+                className={`font-mono text-sm py-2 px-4 ${activeTab === "login" ? "bg-blue-800/50 text-blue-400" : "bg-transparent text-gray-400"}`}
               >
-                <span className="text-green-500 mr-2"></span> LOGIN
+                <span className="text-blue-500 mr-2"></span> LOGIN
               </button>
               <button 
                 onClick={() => setActiveTab("signup")}
-                className={`font-mono text-sm py-2 px-4 ${activeTab === "signup" ? "bg-green-800/50 text-green-400" : "bg-transparent text-gray-400"}`}
+                className={`font-mono text-sm py-2 px-4 ${activeTab === "signup" ? "bg-purple-800/50 text-purple-400" : "bg-transparent text-gray-400"}`}
               >
-                <span className="text-green-500 mr-2"></span> SIGN UP
+                <span className="text-purple-500 mr-2"></span> SIGN UP
               </button>
             </div>
             
@@ -485,19 +421,19 @@ export default function LandingPage() {
             {activeTab === "login" && (
               <div className="space-y-5 font-mono">
                 <div className="space-y-2">
-                  <h4 className="font-mono text-lg leading-none text-green-400 flex items-center gap-2">
+                  <h4 className="font-mono text-lg leading-none text-blue-400 flex items-center gap-2">
                     <LogIn className="w-4 h-4" /> 
                     <span className="typing-animation">Authentication Required</span>
                   </h4>
                   <p className="text-sm text-gray-400 font-mono mb-2">
-                    <span className="text-green-500">$</span> Login to access the arena
+                    <span className="text-blue-500">$</span> Login to access the arena
                   </p>
                 </div>
                 
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <span className="text-green-500">$</span> User.email =
+                      <span className="text-blue-500">$</span> User.email =
                     </Label>
                     <Input
                       id="email"
@@ -505,13 +441,13 @@ export default function LandingPage() {
                       placeholder="developer@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="bg-gray-800/80 border-green-900 focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
+                      className="bg-gray-800/80 border-blue-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
                     />
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="password" className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <span className="text-green-500">$</span> User.password =
+                      <span className="text-blue-500">$</span> User.password =
                     </Label>
                     <Input
                       id="password"
@@ -519,31 +455,29 @@ export default function LandingPage() {
                       placeholder="************"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="bg-gray-800/80 border-green-900 focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
+                      className="bg-gray-800/80 border-blue-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
                     />
                   </div>
                   
                   <Button
-                
-                    // onClick={handleLogin}
-                    className="w-full bg-green-600 hover:bg-green-500 font-medium py-6 transition-all duration-200 font-mono text-white relative overflow-hidden group"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 font-medium py-6 transition-all duration-200 font-mono text-white relative overflow-hidden group border-0"
                   >
-                      <Link href="/user-challenge/setup">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-full h-1/3 bg-black/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                    </div>
-                    <div className="flex items-center justify-center gap-3 relative">
-                      <Terminal className="w-5 h-5" />
-                      <span className="tracking-wider">Authenticate</span>
-                    </div>
+                    <Link href="/user-challenge/setup">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-full h-1/3 bg-black/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                      </div>
+                      <div className="flex items-center justify-center gap-3 relative">
+                        <Terminal className="w-5 h-5" />
+                        <span className="tracking-wider">Authenticate</span>
+                      </div>
                     </Link>
                   </Button>
                   
                   {/* Social login divider */}
                   <div className="relative flex items-center justify-center py-2">
-                    <div className="flex-grow h-px bg-green-900/50"></div>
-                    <span className="px-4 text-xs text-green-500 font-mono">Sign In Using</span>
-                    <div className="flex-grow h-px bg-green-900/50"></div>
+                    <div className="flex-grow h-px bg-blue-900/50"></div>
+                    <span className="px-4 text-xs text-blue-500 font-mono">Sign In Using</span>
+                    <div className="flex-grow h-px bg-blue-900/50"></div>
                   </div>
                   
                   {/* Social login buttons */}
@@ -581,27 +515,27 @@ export default function LandingPage() {
                 <div className="space-y-2">
                   
                   <p className="text-sm text-gray-400 font-mono mb-2">
-                    <span className="text-green-500"></span> Create an account to join the battles
+                    <span className="text-purple-500"></span> Create an account to join the battles
                   </p>
                 </div>
                 
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="signup-name" className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <span className="text-green-500"></span> Coder.name 
+                      <span className="text-purple-500"></span> Coder.name 
                     </Label>
                     <Input
                       id="signup-name"
                       placeholder="developer_1337"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="bg-gray-800/80 border-green-900 focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
+                      className="bg-gray-800/80 border-purple-900 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
                     />
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="signup-email" className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <span className="text-green-500"></span> Coder.email 
+                      <span className="text-purple-500"></span> Coder.email 
                     </Label>
                     <Input
                       id="signup-email"
@@ -609,27 +543,26 @@ export default function LandingPage() {
                       placeholder="developer@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="bg-gray-800/80 border-green-900 focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
+                      className="bg-gray-800/80 border-purple-900 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
                     />
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="signup-password" className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <span className="text-green-500"></span> Coder.password 
-                    </Label>
+                      <span className="text-purple-500"></span> Coder.password</Label>
                     <Input
                       id="signup-password"
                       type="password"
                       placeholder="************"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="bg-gray-800/80 border-green-900 focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
+                      className="bg-gray-800/80 border-purple-900 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all duration-200 font-mono placeholder:text-gray-600 py-5"
                     />
                   </div>
                   
                   <Button
                     // onClick={handleSignup}
-                    className="w-full bg-green-600 hover:bg-green-500 font-medium py-6 transition-all duration-200 font-mono text-white relative overflow-hidden group"
+                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 font-medium py-6 transition-all duration-200 font-mono text-white relative overflow-hidden group border-0"
                   >
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-full h-1/3 bg-black/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
@@ -642,9 +575,9 @@ export default function LandingPage() {
                   
                   {/* Social signup divider */}
                   <div className="relative flex items-center justify-center py-2">
-                    <div className="flex-grow h-px bg-green-900/50"></div>
-                    <span className="px-4 text-xs text-green-500 font-mono"> Sign In Using</span>
-                    <div className="flex-grow h-px bg-green-900/50"></div>
+                    <div className="flex-grow h-px bg-purple-900/50"></div>
+                    <span className="px-4 text-xs text-purple-500 font-mono"> Sign In Using</span>
+                    <div className="flex-grow h-px bg-purple-900/50"></div>
                   </div>
                   
                   {/* Social signup buttons */}
@@ -708,7 +641,7 @@ export default function LandingPage() {
           display: inline-block;
           width: 8px;
           height: 18px;
-          background-color: #4ade80;
+          background-color: #818cf8;
           margin-left: 2px;
           animation: blink 1s step-end infinite;
         }
@@ -765,5 +698,3 @@ export default function LandingPage() {
     </div>
   )
 }
-
-

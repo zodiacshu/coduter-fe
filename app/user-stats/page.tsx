@@ -74,7 +74,7 @@ export default function UserStats() {
         <Button variant="outline" className="mb-6 bg-[#131a2b] border-gray-700 hover:bg-[#1c2539] text-gray-300 font-mono" asChild>
           <Link href="/user-dashboard">
             <ChevronLeft className="mr-2 h-4 w-4" />
-            Back to Dashboard
+            Dashboard
           </Link>
         </Button>
 

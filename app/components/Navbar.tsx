@@ -78,7 +78,7 @@ const Navbar = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <motion.div 
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-400 shadow-md"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 shadow-md"
           variants={logoVariants}
           animate={isHovered ? "hovered" : "normal"}
           whileTap={{ scale: 0.95 }}
@@ -87,7 +87,7 @@ const Navbar = () => {
             variants={codeIconVariants}
             animate={isHovered ? "hovered" : "normal"}
           >
-            <Code2 className="w-6 h-6 text-black" />
+            <Code2 className="w-6 h-6 text-white" />
           </motion.div>
         </motion.div>
         <span className="bg-clip-text font-mono text-white">
